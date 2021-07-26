@@ -7,14 +7,18 @@ option objc_class_prefix = "HLW";
 
 package com.example;
 
-service DemogrpcService {
-  rpc send (DemogrpcRequest) returns (DemogrpcReply) {}
+service DemoGrpcService {
+  rpc send (RequestTemplate) returns (ResponseTemplate) {}
+  rpc serverSideStreaming (RequestTemplate) returns (stream ResponseTemplate) {}
+  rpc clientSideStreaming (stream RequestTemplate) returns (ResponseTemplate) {}
+  rpc bidirectionalStreaming (stream RequestTemplate) returns (stream ResponseTemplate) {}
+
 }
 
-message DemogrpcRequest {
+message RequestTemplate {
   string name = 1;
 }
 
-message DemogrpcReply {
+message ResponseTemplate {
   string message = 1;
 }
